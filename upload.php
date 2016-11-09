@@ -13,16 +13,16 @@
 
    $sql = "select id from notebook where name = '$title'";
    $res = $con -> query($sql);
+   var_dump($res);
    if($row = $res -> fetch_assoc())
    {
-     var_dump($title);
      $sql = "update notebook set text='$content' where name = '$title'";
      $con -> query($sql);
      header("Location:index.php?success=1");
      exit();
-   }else if($week == 1)
+   }else
    {
-     $sql = "insert into notebook(name,text) values('$title',$content)";
+     $sql = "insert into notebook(name,text) values('$title','$content')";
      $con -> query($sql);
      header("Location:index.php?success=1");
      exit();
