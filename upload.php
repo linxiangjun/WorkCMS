@@ -18,13 +18,13 @@
    {
      $sql = "update notebook set text='$content' where name = '$title'";
      $con -> query($sql);
-     header("Location:index.php?success=1");
+     header("Location:index.php");
      exit();
    }else
    {
      $sql = "insert into notebook(name,text) values('$title','$content')";
      $con -> query($sql);
-     header("Location:index.php?success=1");
+     header("Location:index.php");
      exit();
    }
 

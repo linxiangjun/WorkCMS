@@ -58,14 +58,16 @@
                 if(!empty($_GET['data']))
                 {
                   $data = $_GET['data'];
-                  if (!get_magic_quotes_gpc()) {    //防SQL注入
+                  if (!get_magic_quotes_gpc()) {  //防SQL注入
                     addslashes($data);
                   }
                 }else
                 {
-                  $data = 1;    //默认取工作本的第一条数据
+				  $sqlMax = "select max(id) from notebook";
+				  $resMax = $con -> query($sqlMax);  //默认取工作本的最后一条数据 
+				  $rowMax = $resMax -> fetch_array();
+				  $data = $rowMax['max(id)'];
                 }
-                  include_once('./tool.php');
                   $sql = "select text from notebook where id = '$data'";
                   $res = $con -> query($sql);
                   if($row = $res -> fetch_array()){
